@@ -54,6 +54,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+#yarn lock file
+yarn.lock
+
 # dotenv environment variables file
 .env
 
@@ -69,3 +72,6 @@ typings/
 *.css.shim.ts
 *.ngsummary.json
 *.shim.ngstyle.ts
+
+# folders
+dist/

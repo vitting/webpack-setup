@@ -1,15 +1,21 @@
+const path = require('path');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const BitBarWebpackProgressPlugin = require("bitbar-webpack-progress-plugin");
-const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 let filename = "dev-bundle.js";
 if (process.env.NODE_ENV === "production") {
   filename = "prod-bundle.js"
 }
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'index.ts'),
+  entry: {
+    app: path.join(__dirname, 'src', 'index.ts'),
+    //common: [] // ["jquery", "bootstrap"]
+  },
   output: {
     filename: filename,
     path: path.resolve(__dirname, 'dist')
@@ -48,7 +54,7 @@ module.exports = {
         ],
         use: ExtractTextPlugin.extract({
             fallback: "style-loader",
-            use: [{loader: "css-loader"}, {loader: "postcss-loader"}, {loader: "sass-loader"}]
+            use: ["css-loader", "postcss-loader", "sass-loader"]
         })
       },
       {
@@ -58,7 +64,7 @@ module.exports = {
         ],
         use: ExtractTextPlugin.extract({
             fallback: "style-loader",
-            use: [{loader: "css-loader"}, {loader: "postcss-loader"}, {loader: "less-loader"}]
+            use: ["css-loader", "postcss-loader", "less-loader"]
         })
       },
       {
@@ -68,7 +74,7 @@ module.exports = {
         ],
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: [{loader: "css-loader"}, {loader: "postcss-loader"}]
+          use: ["css-loader", "postcss-loader"]
         })
       },
       {
@@ -78,7 +84,7 @@ module.exports = {
         ],
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: [{loader: "css-loader"}, {loader: "postcss-loader"}]
+          use: ["css-loader", "postcss-loader"]
         })
       },
   ]
@@ -96,6 +102,18 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.resolve(__dirname, "src", "index.html")
+    }),
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, "src", "images"),
+      to: path.resolve(__dirname, "dist", "images")
+    }, {
+      from: path.resolve(__dirname, "src", "fonts"),
+      to: path.resolve(__dirname, "dist", "fonts")
+    }],
+    {
+      ignore: [
+        // "*.txt"
+      ]
     })
   ],
   devtool: 'source-map',
@@ -105,5 +123,3 @@ module.exports = {
     open: true
   },
 };
-
-console.log(process.env.NODE_ENV);
