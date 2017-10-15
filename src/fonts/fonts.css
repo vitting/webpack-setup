@@ -1,0 +1,21 @@
+﻿/* Local font for memba*/
+@font-face {
+  font-family: 'Avenir Next Regular';
+  src: url("/fonts/AvenirNextLTPro-Regular.otf") format("opentype"); /* IE 5-8 */
+    src: local('☺'), /* sneakily trick IE */
+         url("/fonts/AvenirNextLTPro-Regular.otf") format("opentype");   /* FF 3.6, Chrome 5, IE9 */        
+}
+
+@font-face {
+  font-family: 'Avenir Next Heavy';
+  src: url("/fonts/AvenirNextLTPro-HeavyCn.otf") format("opentype"); /* IE 5-8 */
+    src: local('☺'), /* sneakily trick IE */
+         url("/fonts/AvenirNextLTPro-HeavyCn.otf") format("opentype");   /* FF 3.6, Chrome 5, IE9 */        
+}
+
+@font-face {
+  font-family: 'Avenir Next Bold';
+  src: url("/fonts/AvenirNextLTPro-BoldCn.otf") format("opentype"); /* IE 5-8 */
+    src: local('☺'), /* sneakily trick IE */
+         url("/fonts/AvenirNextLTPro-BoldCn.otf") format("opentype");   /* FF 3.6, Chrome 5, IE9 */        
+}
